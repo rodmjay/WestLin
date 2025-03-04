@@ -1,13 +1,11 @@
 import { Component, ElementRef, OnInit, ViewChild, AfterViewInit, HostListener } from '@angular/core';
 import { RenderingService } from '../services/rendering.service';
 import { World } from '../../core/models/world.model';
-import { MapPoint } from '../interfaces/map-point.interface';
 
 @Component({
   selector: 'app-game-view',
   templateUrl: './game-view.component.html',
-  styleUrls: ['./game-view.component.scss'],
-  standalone: true
+  styleUrls: ['./game-view.component.scss']
 })
 export class GameViewComponent implements OnInit, AfterViewInit {
   @ViewChild('gameCanvas', { static: true }) gameCanvas!: ElementRef<HTMLCanvasElement>;

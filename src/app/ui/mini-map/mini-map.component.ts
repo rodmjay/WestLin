@@ -1,16 +1,14 @@
 import { Component, ElementRef, OnInit, ViewChild, AfterViewInit, Output, EventEmitter } from '@angular/core';
 import { World } from '../../core/models/world.model';
-import { MapPoint } from '../interfaces/map-point.interface';
 
 @Component({
   selector: 'app-mini-map',
   templateUrl: './mini-map.component.html',
-  styleUrls: ['./mini-map.component.scss'],
-  standalone: true
+  styleUrls: ['./mini-map.component.scss']
 })
 export class MiniMapComponent implements OnInit, AfterViewInit {
   @ViewChild('miniMapCanvas', { static: true }) miniMapCanvas!: ElementRef<HTMLCanvasElement>;
-  @Output() centerChanged = new EventEmitter<MapPoint>();
+  @Output() centerChanged = new EventEmitter<{x: number, y: number}>();
   
   private ctx!: CanvasRenderingContext2D;
   private tileSize = 2; // Size of each tile in the minimap
@@ -38,7 +36,7 @@ export class MiniMapComponent implements OnInit, AfterViewInit {
     }
   }
 
-  updateViewport(center: MapPoint, visibleTilesX: number, visibleTilesY: number): void {
+  updateViewport(center: {x: number, y: number}, visibleTilesX: number, visibleTilesY: number): void {
     this.viewportRect = {
       x: center.x - visibleTilesX / 2,
       y: center.y - visibleTilesY / 2,
