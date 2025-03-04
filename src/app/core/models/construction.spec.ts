@@ -1,6 +1,5 @@
-import { TestBed } from '@angular/core/testing';
-import { Construction } from '@core/models/construction';
-import { Commodity } from '@core/enums/commodity.enum';
+import { Construction } from '../../../core/models/construction';
+import { Commodity } from '../../../core/enums/commodity.enum';
 
 describe('Construction', () => {
   let construction: Construction;

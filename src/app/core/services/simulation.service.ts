@@ -3,6 +3,7 @@ import { CityStateService } from './city-state.service';
 import { World } from '../models/world.model';
 import { ConstructionManagerService } from './index';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { Simulation as CoreSimulation } from '@core/services/simulation';
 
 @Injectable({
   providedIn: 'root'
@@ -13,12 +14,29 @@ export class SimulationService {
   private simulationInterval: any;
   private readonly NUMOF_DAYS_IN_MONTH = 100;
   private readonly NUMOF_DAYS_IN_YEAR = 1200; // 12 * NUMOF_DAYS_IN_MONTH
+  private coreSimulation: CoreSimulation;
   
   constructor(
     private cityStateService: CityStateService,
     private world: World,
     private constructionManager: ConstructionManagerService
-  ) {}
+  ) {
+    // Create a new CoreSimulation instance
+    this.coreSimulation = new CoreSimulation(
+      (this.cityStateService as any).coreCityState,
+      new (window as any).World(100), // Temporary solution until we properly integrate the World model
+      (this.constructionManager as any).coreConstructionManager || {}
+    );
+    
+    // Subscribe to core state changes
+    this.coreSimulation.onRunningChanged((isRunning) => {
+      this._isRunning.next(isRunning);
+    });
+    
+    this.coreSimulation.onSpeedChanged((speed) => {
+      this._speed.next(speed);
+    });
+  }
   
   get isRunning(): Observable<boolean> {
     return this._isRunning.asObservable();
@@ -29,6 +47,10 @@ export class SimulationService {
   }
   
   setSpeed(value: number): void {
+    // Delegate to core implementation
+    this.coreSimulation.setSpeed(value);
+    
+    // Also update Angular observables
     this._speed.next(value);
     if (this._isRunning.value) {
       this.stop();
@@ -37,6 +59,10 @@ export class SimulationService {
   }
   
   start(): void {
+    // Delegate to core implementation
+    this.coreSimulation.start();
+    
+    // Also update Angular observables
     if (!this._isRunning.value) {
       const interval = 1000 / this._speed.value;
       this.simulationInterval = setInterval(() => {
@@ -47,6 +73,10 @@ export class SimulationService {
   }
   
   stop(): void {
+    // Delegate to core implementation
+    this.coreSimulation.stop();
+    
+    // Also update Angular observables
     if (this._isRunning.value) {
       clearInterval(this.simulationInterval);
       this._isRunning.next(false);
@@ -54,7 +84,10 @@ export class SimulationService {
   }
   
   doTimeStep(): void {
-    // Increment game time
+    // Delegate to core implementation
+    this.coreSimulation.doTimeStep();
+    
+    // Also update Angular observables
     let totalTime = 0;
     this.cityStateService.totalTime.subscribe(time => totalTime = time);
     this.cityStateService.setTotalTime(totalTime + 1);

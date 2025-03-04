@@ -6,6 +6,8 @@ import { RenderingService } from './services/rendering.service';
 import { TextureLoaderService } from './services/texture-loader.service';
 
 @NgModule({
+  declarations: [
+  ],
   imports: [
     CommonModule,
     GameViewComponent,

@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { CityState as CoreCityState } from '@core/services/city-state';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CityStateService {
+  // Core implementation
+  private coreCityState: CoreCityState = new CoreCityState(10000);
   // Population statistics
   private _population = new BehaviorSubject<number>(0);
   private _starvingPopulation = new BehaviorSubject<number>(0);
@@ -279,6 +282,20 @@ export class CityStateService {
   
   // Game state initialization
   initializeGameState(): void {
+    // Initialize the core city state
+    this.coreCityState = new CoreCityState(10000);
+    
+    // Subscribe to core state changes
+    this.coreCityState.onStateChanged(() => {
+      this._totalTime.next(this.coreCityState.totalTime);
+      this._totalMoney.next(this.coreCityState.money);
+      this._population.next(this.coreCityState.population);
+      this._techLevel.next(this.coreCityState.techLevel);
+      this._powerMade.next(this.coreCityState.powerMade);
+      this._powerUsed.next(this.coreCityState.powerUsed);
+    });
+    
+    // Initialize Angular observables
     this._totalMoney.next(10000); // Starting money
     this._techLevel.next(0);
     this._highestTechLevel.next(0);
@@ -312,6 +329,9 @@ export class CityStateService {
   
   // Monthly update functions
   updateMonthly(): void {
+    // Delegate to core implementation
+    this.coreCityState.updateMonthly();
+    
     // Update monthly statistics
     // This would be called from the simulation service
     
@@ -328,6 +348,9 @@ export class CityStateService {
   
   // Yearly update functions
   updateYearly(): void {
+    // Delegate to core implementation
+    this.coreCityState.updateYearly();
+    
     // Update yearly statistics
     // This would be called from the simulation service
     

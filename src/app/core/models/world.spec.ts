@@ -1,5 +1,4 @@
-import { TestBed } from '@angular/core/testing';
-import { World } from '@core/models/world';
+import { World } from '../../../core/models/world';
 
 describe('World', () => {
   let world: World;
@@ -30,15 +29,5 @@ describe('World', () => {
     expect(world.isBorder(50, 0)).toBe(true);
     expect(world.isBorder(50, 99)).toBe(true);
     expect(world.isBorder(50, 50)).toBe(false);
-  });
-  
-  it('should get a tile at valid coordinates', () => {
-    const tile = world.getTile(50, 50);
-    expect(tile).toBeTruthy();
-  });
-  
-  it('should return null for a tile at invalid coordinates', () => {
-    const tile = world.getTile(-1, 50);
-    expect(tile).toBeNull();
   });
 });

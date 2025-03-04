@@ -1,8 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 import { SimulationService } from './simulation.service';
 import { CityStateService } from './city-state.service';
-import { World } from '../models/world.model';
+import { World } from '@core/models/world';
 import { ConstructionManagerService } from './construction-manager.service';
+import { Simulation as CoreSimulation } from '@core/services/simulation';
 
 describe('SimulationService', () => {
   let service: SimulationService;
@@ -15,8 +16,11 @@ describe('SimulationService', () => {
       providers: [
         SimulationService,
         CityStateService,
-        World,
-        ConstructionManagerService
+        ConstructionManagerService,
+        {
+          provide: World,
+          useFactory: () => new World(100)
+        }
       ]
     });
     
@@ -24,6 +28,15 @@ describe('SimulationService', () => {
     cityStateService = TestBed.inject(CityStateService);
     world = TestBed.inject(World);
     constructionManager = TestBed.inject(ConstructionManagerService);
+    
+    // Mock the core simulation
+    (service as any).coreSimulation = {
+      start: jasmine.createSpy('start'),
+      stop: jasmine.createSpy('stop'),
+      setSpeed: jasmine.createSpy('setSpeed'),
+      onRunningChanged: jasmine.createSpy('onRunningChanged').and.returnValue({ unsubscribe: () => {} }),
+      onSpeedChanged: jasmine.createSpy('onSpeedChanged').and.returnValue({ unsubscribe: () => {} })
+    };
   });
   
   it('should be created', () => {

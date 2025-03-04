@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Construction } from '../interfaces/construction.interface';
+import { ConstructionManager as CoreConstructionManager } from '@core/services/construction-manager';
+import { IConstructionRequest } from '@core/interfaces/construction-request.interface';
 
 export interface ConstructionRequest {
   subject: Construction;
@@ -11,6 +13,7 @@ export interface ConstructionRequest {
 })
 export class ConstructionManagerService {
   private pendingRequests: Map<Construction, ConstructionRequest> = new Map();
+  private coreConstructionManager: CoreConstructionManager = new CoreConstructionManager();
   
   submitRequest(request: ConstructionRequest): void {
     this.pendingRequests.set(request.subject, request);
