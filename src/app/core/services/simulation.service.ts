@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CityStateService } from './city-state.service';
 import { World } from '../models/world.model';
-import { ConstructionManagerService } from './construction-manager.service';
+import { ConstructionManagerService } from './index';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
