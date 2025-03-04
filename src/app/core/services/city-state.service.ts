@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { CityState as CoreCityState } from '@core/services/city-state';
+import { CityState as CoreCityState } from '../../../core/services/city-state';
 
 @Injectable({
   providedIn: 'root'
