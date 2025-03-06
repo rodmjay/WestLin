@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "9NFemxst6L+wXXUa6ZZBiqT/DDulSiDXU9BycpLsiqKnoa9YmU5GRLadAYmwH5OX5nqadR2YnpcFbVw4z5iQIw==",
+  "success": true,
+  "projectFilePath": "/home/ubuntu/repos/LinCityCS/LinCityCS.RenderingUI/LinCityCS.RenderingUI.csproj",
+  "expectedPackageFiles": [
+    "/home/ubuntu/.nuget/packages/monogame.framework.desktopgl/3.8.2.1105/monogame.framework.desktopgl.3.8.2.1105.nupkg.sha512"
+  ],
+  "logs": []
+}

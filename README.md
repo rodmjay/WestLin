@@ -1,59 +1,92 @@
-# LincityNgWeb
+# LinCityCS
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.0.
+LinCityCS is a C# port of the original LinCity-NG city simulation game. This project aims to replicate the core functionality of the original C++ implementation while leveraging C#-friendly technologies like MonoGame for rendering.
 
-## Development server
+## Project Structure
 
-To start a local development server, run:
+The solution is organized into the following projects:
+
+- **LinCityCS.SimulationCore**: Contains the core simulation components such as the city/map, tiles, buildings, simulation engine, event management, and resource management.
+- **LinCityCS.RenderingUI**: Handles rendering, input processing, and UI components using MonoGame.
+- **LinCityCS.Utilities**: Provides supporting functionality like configuration, asset loading, and logging.
+- **LinCityCS.Game**: The main entry point for the game, integrating the simulation and rendering components.
+- **LinCityCS.Tests**: Contains unit tests for verifying the behavior of the simulation components.
+
+## Core Components
+
+### Simulation Core
+
+- **World**: Manages the layout of the city, including a grid of tiles.
+- **MapTile**: Represents individual units or cells in the city grid, which can host terrain, buildings, or other features.
+- **Construction**: Base class for all constructions (buildings, roads, etc.) that can be placed in the city.
+- **ConstructionGroup**: Defines the properties and behaviors of a type of construction.
+- **SimulationEngine**: Drives the simulation updates (ticks), coordinating changes across the city, tiles, and buildings.
+- **CommodityManager**: Manages the flow of resources like food, labor, goods, etc. between constructions.
+- **Economy**: Handles the financial aspects of the simulation, including taxes, expenses, and income.
+
+### Building Types
+
+The game includes various types of buildings, each with specific behaviors:
+
+- **Residences**: Housing for the city's population, consuming resources and producing labor.
+- **Power Plants**: Generate electricity for the city (coal, solar, wind).
+- **Industry**: Produces goods and materials (light and heavy industry).
+- **Markets**: Distribute resources to nearby residences and businesses.
+- **Transport**: Infrastructure for moving people and goods (roads, rails).
+
+### Rendering and UI
+
+- **GameRenderer**: Renders the visual representation of the city using MonoGame.
+- **Camera**: Manages the view of the city, including panning and zooming.
+- **InputManager**: Captures and processes user inputs (keyboard, mouse).
+- **UIManager**: Coordinates the display and interaction with UI elements.
+- **UI Components**: Various UI elements like panels, buttons, labels, etc.
+
+## Building and Running
+
+### Prerequisites
+
+- .NET 6.0 SDK or later
+- MonoGame 3.8 or later
+
+### Building the Project
 
 ```bash
-ng serve
+dotnet build
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+### Running the Game
 
 ```bash
-ng generate component component-name
+dotnet run --project LinCityCS.Game
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+### Running the Tests
 
 ```bash
-ng generate --help
+dotnet test
 ```
 
-## Building
+## Architecture
 
-To build the project run:
+The project follows a modular architecture with clear separation of concerns:
 
-```bash
-ng build
-```
+1. **Simulation Layer**: Handles the game logic, state management, and simulation updates.
+2. **Rendering Layer**: Responsible for displaying the game state to the user.
+3. **Input Layer**: Processes user inputs and translates them into game actions.
+4. **UI Layer**: Manages the user interface elements and interactions.
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+This separation allows for easier maintenance, testing, and extension of the codebase.
 
-## Running unit tests
+## Contributing
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-```bash
-ng test
-```
+## License
 
-## Running end-to-end tests
+This project is licensed under the same license as the original LinCity-NG project.
 
-For end-to-end (e2e) testing, run:
+## Acknowledgments
 
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- The original LinCity-NG developers for creating the game.
+- The MonoGame community for providing a great framework for game development in C#.
