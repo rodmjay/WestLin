@@ -1,0 +1,12 @@
+/home/ubuntu/repos/LinCityCS/LinCityCS.SimulationCore/obj/Debug/net6.0/LinCityCS.SimulationCore.csproj.AssemblyReference.cache
+/home/ubuntu/repos/LinCityCS/LinCityCS.SimulationCore/obj/Debug/net6.0/LinCityCS.SimulationCore.GeneratedMSBuildEditorConfig.editorconfig
+/home/ubuntu/repos/LinCityCS/LinCityCS.SimulationCore/obj/Debug/net6.0/LinCityCS.SimulationCore.AssemblyInfoInputs.cache
+/home/ubuntu/repos/LinCityCS/LinCityCS.SimulationCore/obj/Debug/net6.0/LinCityCS.SimulationCore.AssemblyInfo.cs
+/home/ubuntu/repos/LinCityCS/LinCityCS.SimulationCore/obj/Debug/net6.0/LinCityCS.SimulationCore.csproj.CoreCompileInputs.cache
+/home/ubuntu/repos/LinCityCS/LinCityCS.SimulationCore/bin/Debug/net6.0/LinCityCS.SimulationCore.deps.json
+/home/ubuntu/repos/LinCityCS/LinCityCS.SimulationCore/bin/Debug/net6.0/LinCityCS.SimulationCore.dll
+/home/ubuntu/repos/LinCityCS/LinCityCS.SimulationCore/bin/Debug/net6.0/ref/LinCityCS.SimulationCore.dll
+/home/ubuntu/repos/LinCityCS/LinCityCS.SimulationCore/bin/Debug/net6.0/LinCityCS.SimulationCore.pdb
+/home/ubuntu/repos/LinCityCS/LinCityCS.SimulationCore/obj/Debug/net6.0/LinCityCS.SimulationCore.dll
+/home/ubuntu/repos/LinCityCS/LinCityCS.SimulationCore/obj/Debug/net6.0/ref/LinCityCS.SimulationCore.dll
+/home/ubuntu/repos/LinCityCS/LinCityCS.SimulationCore/obj/Debug/net6.0/LinCityCS.SimulationCore.pdb
